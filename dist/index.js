@@ -15189,7 +15189,7 @@ const auth_app_1 = __nccwpck_require__(7541);
 const app_1 = __nccwpck_require__(4389);
 async function getInstallationId(app, owner) {
     for await (const { installation } of app.eachInstallation.iterator()) {
-        if (installation.account?.login.toLowerCase() == owner.toLowerCase()) {
+        if (installation.account?.login.toLowerCase() === owner.toLowerCase()) {
             return installation.id;
         }
     }
@@ -15210,10 +15210,10 @@ async function getInstallationToken(appId, privateKey, clientId, clientSecret, i
 exports.getInstallationToken = getInstallationToken;
 function newGitHubApp(appId, privateKey, clientId, clientSecret) {
     return new app_1.App({
-        appId: appId,
-        privateKey: privateKey,
-        clientId: clientId,
-        clientSecret: clientSecret
+        appId,
+        privateKey,
+        clientId,
+        clientSecret
     });
 }
 exports.newGitHubApp = newGitHubApp;
@@ -15289,9 +15289,9 @@ async function run() {
         const owner = (0, helpers_1.getEnvironmentVariable)('GITHUB_REPOSITORY_OWNER');
         core.info('searching for installation');
         const app = (0, auth_1.newGitHubApp)(appId, privateKey, clientId, clientSecret);
-        var id = await (0, auth_1.getInstallationId)(app, owner);
+        const id = await (0, auth_1.getInstallationId)(app, owner);
         core.info('found installation id, getting token');
-        var token = await (0, auth_1.getInstallationToken)(appId, privateKey, clientId, clientSecret, id);
+        const token = await (0, auth_1.getInstallationToken)(appId, privateKey, clientId, clientSecret, id);
         core.info('got token, setting output');
         core.setSecret(token);
         core.setOutput('app_install_token', token);

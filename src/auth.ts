@@ -3,7 +3,7 @@ import { App } from '@octokit/app'
 
 async function getInstallationId(app: App, owner: string): Promise<number> {
   for await (const { installation } of app.eachInstallation.iterator()) {
-    if (installation.account?.login.toLowerCase() == owner.toLowerCase()) {
+    if (installation.account?.login.toLowerCase() === owner.toLowerCase()) {
       return installation.id
     }
   }
@@ -37,10 +37,10 @@ function newGitHubApp(
   clientSecret: string
 ): App {
   return new App({
-    appId: appId,
-    privateKey: privateKey,
-    clientId: clientId,
-    clientSecret: clientSecret
+    appId,
+    privateKey,
+    clientId,
+    clientSecret
   })
 }
 

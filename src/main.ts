@@ -16,9 +16,9 @@ export async function run(): Promise<void> {
 
     core.info('searching for installation')
     const app = newGitHubApp(appId, privateKey, clientId, clientSecret)
-    var id = await getInstallationId(app, owner)
+    const id = await getInstallationId(app, owner)
     core.info('found installation id, getting token')
-    var token = await getInstallationToken(
+    const token = await getInstallationToken(
       appId,
       privateKey,
       clientId,
