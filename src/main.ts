@@ -1,5 +1,6 @@
 import * as core from '@actions/core'
-import { wait } from './wait'
+import { getEnvironmentVariable } from './helpers'
+import { newGitHubApp, getInstallationId, getInstallationToken } from './auth'
 
 /**
  * The main function for the action.
@@ -7,18 +8,26 @@ import { wait } from './wait'
  */
 export async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
+    const privateKey: string = core.getInput('private_key')
+    const clientId: string = core.getInput('client_id')
+    const clientSecret: string = core.getInput('client_secret')
+    const appId: string = core.getInput('app_id')
+    const owner: string = getEnvironmentVariable('GITHUB_REPOSITORY_OWNER')
 
-    // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
-    core.debug(`Waiting ${ms} milliseconds ...`)
-
-    // Log the current timestamp, wait, then log the new timestamp
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
-
-    // Set outputs for other workflow steps to use
-    core.setOutput('time', new Date().toTimeString())
+    core.info('searching for installation')
+    const app = newGitHubApp(appId, privateKey, clientId, clientSecret)
+    var id = await getInstallationId(app, owner)
+    core.info('found installation id, getting token')
+    var token = await getInstallationToken(
+      appId,
+      privateKey,
+      clientId,
+      clientSecret,
+      id
+    )
+    core.info('got token, setting output')
+    core.setSecret(token)
+    core.setOutput('app_install_token', token)
   } catch (error) {
     // Fail the workflow run if an error occurs
     if (error instanceof Error) core.setFailed(error.message)

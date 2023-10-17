@@ -1,18 +1,26 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'app-token'
+description: 'Gets the GITHUB_TOKEN for the given app in the current installation'
+author: 'ActionsHub'
 
 # Define your inputs here.
 inputs:
-  milliseconds:
-    description: 'Your input description here'
+  private_key:
+    description: 'the private key of the app'
     required: true
-    default: '1000'
+  app_id:
+    description: 'the app id'
+    required: true
+  client_id:
+    description: 'the client id of the app'
+    required: true
+  client_secret:
+    description: 'the client secret of the app'
+    required: true
 
 # Define your outputs here.
 outputs:
-  time:
-    description: 'Your output description here'
+  app_install_token:
+    description: 'the token for the app installation to authenticate to the github api'
 
 runs:
   using: node20
