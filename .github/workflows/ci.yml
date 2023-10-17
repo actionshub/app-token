@@ -53,8 +53,8 @@ jobs:
         id: test-action
         uses: ./
         with:
-          milliseconds: 1000
+          private_key: ${{ secrets.ACTIONSHUB_APP_PRIVATE_KEY }}
+          app_id: ${{ secrets.ACTIONSHUB_APP_ID }}
+          client_id: ${{ secrets.ACTIONSHUB_APP_CLIENT_ID }}
+          client_secret: ${{ secrets.ACTIONSHUB_APP_CLIENT_SECRET }}
 
-      - name: Print Output
-        id: output
-        run: echo "${{ steps.test-action.outputs.time }}"
