@@ -1,16 +1,16 @@
 {
-  "name": "typescript-action",
-  "description": "GitHub Actions TypeScript template",
-  "version": "0.0.0",
-  "author": "",
-  "private": true,
-  "homepage": "https://github.com/actions/typescript-action",
+  "name": "@actionshub/app-token",
+  "description": "GitHub Action for getting Github App Installation GitHub Token",
+  "version": "1.0.0",
+  "author": "Jason Field",
+  "private": false,
+  "homepage": "https://github.com/actionshub/app-token",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/actionshub/app-token.git"
   },
   "bugs": {
-    "url": "https://github.com/actions/typescript-action/issues"
+    "url": "https://github.com/actionshub/app-token/issues"
   },
   "keywords": [
     "actions",
