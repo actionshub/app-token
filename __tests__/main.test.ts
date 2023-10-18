@@ -36,7 +36,7 @@ jest.mock('../src/auth', () => {
 describe('run function', () => {
   beforeEach(() => {
     // Reset mocks before each test
-    (core.getInput as jest.Mock).mockReset()
+    ;(core.getInput as jest.Mock).mockReset()
     ;(getEnvironmentVariable as jest.Mock).mockReturnValue('mockOwner')
     ;(newGitHubApp as jest.Mock).mockReturnValue({})
     ;(getInstallationId as jest.Mock).mockResolvedValue(1234)
@@ -66,7 +66,7 @@ describe('run function', () => {
   })
 
   it('handles errors and sets the action as failed', async () => {
-    (getInstallationId as jest.Mock).mockRejectedValue(new Error('Test error'))
+    ;(getInstallationId as jest.Mock).mockRejectedValue(new Error('Test error'))
 
     await run()
 

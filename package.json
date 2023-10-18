@@ -32,7 +32,7 @@
     "package": "ncc build src/index.ts --license licenses.txt",
     "package:watch": "npm run package -- --watch",
     "test": "jest --coverage",
-    "all": "npm run format:write && npm run lint && npm run test && npm run package"
+    "all": "npm run format:write && npm run lint && npm run test && npm run package && echo 'finished packaging'"
   },
   "license": "MIT",
   "jest": {
