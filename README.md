@@ -1,6 +1,6 @@
 # App-Token Github Action
 
-This action allows you to get the `GITHUB_TOKEN` for a given app installation to save you from using bot accounts. 
+This action allows you to get the `GITHUB_TOKEN` for a given app installation to save you from using bot accounts.
 
 ## Features
 
@@ -23,7 +23,6 @@ This action allows you to get the `GITHUB_TOKEN` for a given app installation to
 | Name | Description |
 | --- | --- |
 | `app_install_token` | The token for the app installation used to authenticate to the GitHub API. |
-
 
 ## Example Workflow
 
@@ -71,8 +70,8 @@ pre-commit install
 
 This section is intended for developers who want to contribute to the app-token action.
 
-
 ### Clone the repository
+
 ```bash
 git clone https://github.com/ActionsHub/app-token.git
 cd app-token
